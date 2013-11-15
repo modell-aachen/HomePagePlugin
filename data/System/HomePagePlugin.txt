@@ -1,0 +1,68 @@
+---+!! !HomePagePlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Allow sitewide, user or hostname specified default pages
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Usage
+
+This plugin makes the Default frontpage configurable -
+   1 any time a user goes to %SCRIPTURL{view}% they will be shown the topic =configured= 
+by the Foswiki administrator in ={HomePagePlugin}{SiteDefaultTopic}= in the Extensions section of =configure=.
+   2 if ={HomePagePlugin}{GotoHomePageOnLogin}= is set, when a user logs in, they will be shown the topic specificed in their UserForm
+
+Additionally, there is now a ={HomePagePlugin}{HostnameMapping} __EXPERT__ setting that allows you to set different frontpages for each domain or protocol,
+which means you _could_ define a hostname per web
+
+eg
+<verbatim>
+    'http://home.org' => 'Home',
+    'http://www.home.org' => 'Home.Www',
+    'http://blog.org' => 'Blog',
+    'http://www.blog.org' => 'Blog.Www'
+</verbatim>
+
+or
+<verbatim>
+    'http://download.foswiki.org' => 'Download',
+    'http://tasks.foswiki.org' => 'Tasks',
+    'http://development.foswiki.org' => 'Development',
+    'http://extensions.foswiki.org' => 'Extensions',
+    'http://community.foswiki.org' => 'Community',
+    'http://support.foswiki.org' => 'Support',
+    'http://CarlSagan.foswiki.org' => 'Main.CarlSagan,
+</verbatim>
+
+---++ !TemplateLogin individual configurable !HomePage on login
+The Admin can also =configure= ={HomePagePlugin}{GotoHomePageOnLogin}=, to default
+to an individual !HomePage defined in a UserForm field in the users personal topic.
+(the current user - %WIKIUSERNAME% - has !HomePage set to : %FORMFIELD{"HomePage" alttext="nothing" efault="nothing" topic="%WIKIUSERNAME%"}%)
+ 
+__Note__ that this means that any URLs emailed to them will only be useful after login.
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Info
+
+Many thanks to the following sponsors for supporting this work:
+   * Created for Blackfin inc.
+
+|  Author(s): | Foswiki:Main.SvenDowideit|
+|  Copyright: | &copy; 2009 SvenDowideit@fosiki.com - http://fosiki.com<br> &copy; 2012 Foswiki Contributors |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License 3)]] |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+| 1.2.1 (16 Dec 2012) | Foswikitask:Item12297: Address perlcritic recommendation. |
+| 1.2.0 (16 Apr 2012) | Foswikitask:Item11761: Include in core release |
+| 1.1.1 (1 Aug 2009) | fix bug in login screen usage |
+| 1.1.0 (July 2009) | add Expert hash allowing domain name based frontpage setting |
+| 1.0.0 (Feb 2009) | initial version |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Home page: | http://foswiki.org/bin/view/Extensions/HomePagePlugin |
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. -->
