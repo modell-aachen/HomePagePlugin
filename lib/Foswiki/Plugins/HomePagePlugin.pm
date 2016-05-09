@@ -13,8 +13,8 @@ use warnings;
 use Foswiki::Func    ();
 use Foswiki::Plugins ();
 
-use version; our $VERSION = version->declare("v1.2.1");
-our $RELEASE = "1.2";
+our $VERSION = '1.23';
+our $RELEASE = '1.23';
 our $SHORTDESCRIPTION  = 'Allow User specified home pages - on login';
 our $NO_PREFS_IN_TOPIC = 1;
 
@@ -33,6 +33,10 @@ sub initializeUserHandler {
 
     return
       if ( $Foswiki::Plugins::SESSION->inContext('command_line') );
+
+    return
+      if ( $Foswiki::Plugins::SESSION->{request}->param('defaultweb')
+        || $Foswiki::Plugins::SESSION->{request}->param('topic') );
 
     my $gotoOnLogin =
       (       $Foswiki::cfg{HomePagePlugin}{GotoHomePageOnLogin}
